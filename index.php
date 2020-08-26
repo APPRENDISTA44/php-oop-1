@@ -25,8 +25,8 @@
   ];
 
   foreach ($users as $user) {
-    $utente = new User($user['id'],$user['nome'],$user['cognome'],$user['email'],$user['29']);
-    var_dump($utente);
+    $utente = new User($user['id'],$user['nome'],$user['cognome'],$user['email'],$user['eta']);
+    echo $utente->getStringInformation();
   }
 
  ?>
