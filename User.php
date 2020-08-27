@@ -1,10 +1,13 @@
 <?php
   class User {
-    public $id;
-    public $nome;
-    public $cognome;
-    public $email;
-    public $eta;
+    protected $id;
+    protected $nome;
+    protected $cognome;
+    protected $email;
+    protected $eta;
+    protected $priority;
+    protected $sconto;
+
 
     function __construct($id,$nome,$cognome,$email,$eta)
     {
@@ -14,6 +17,8 @@
         $this->cognome = $cognome;
         $this->email = $email;
         $this->eta = $eta;
+        $this->setPriority();
+        $this->setSconto();
       }
       else {
         die('parametri non validi');
@@ -22,12 +27,34 @@
 
     public function getStringInformation()
     {
-      $id = 'UTENTE: ' . $this->id . '<br>';
-      $nome_completo = 'NOME: ' . $this->nome . ' ' . $this->cognome . '<br>';
-      $email = 'EMAIL: ' . $this->email . '<br>';
-      $eta = 'ETA: ' . $this->eta . '<br>';
-      return $id . $nome_completo . $email . $eta . '<br>';
+      return[
+        'id' => $this->id,
+        'nome' => $this->nome,
+        'cognome' => $this->cognome,
+        'email' => $this->email,
+        'eta' => $this->eta
+      ];
+    }
 
+    protected function setPriority(){
+      $this->priority = 'Low';
+    }
+
+    public function getPriority(){
+      return $this->priority;
+    }
+
+    protected function setSconto(){
+      if ($this->eta > 60) {
+        $this->sconto = '20%';
+      }
+      else {
+        $this->sconto = '0%';
+      }
+    }
+
+    public function getSconto(){
+      return $this->sconto;
     }
   }
 
